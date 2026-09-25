@@ -1,0 +1,23 @@
+{
+  "competition": "Amazon ML Challenge 2026",
+  "reported_competition_macro_f05": 0.987,
+  "reported_rank": 250,
+  "reported_participants": 90000,
+  "result_provenance": "Author-reported competition result; not independently scored against hidden labels",
+  "verified_submission_counts": {
+    "source_entities": 1732544,
+    "candidate_pairs": 12916511,
+    "candidates_per_entity": 7.455228265487053,
+    "maximum_candidates_per_entity": 75,
+    "match_links": 5803442,
+    "maximum_matches_per_entity": 11,
+    "indic_dictionary_tokens": 3103
+  },
+  "source_archive_sha256": "c41b9f0626a2380bc589550e20d491fe325fbdd51d06b47eef73524dfd699110",
+  "source_archive_names": [
+    "FINAL_hrushikesh_ramilla_submission.zip",
+    "Neurons_submission.zip"
+  ],
+  "counts_provenance": "Counted directly from both TSV members and the dictionary in the byte-identical submission archives",
+  "reproduction_limit": "Packaged CLI uses weighted fuzzy scoring and at most 25 candidates per entity; final submission contains up to 75. No exact-output reproduction claim."
+}
