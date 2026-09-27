@@ -97,7 +97,7 @@ def run_pipeline(data_dir: str, output_dir: str, split: str = "test", max_entiti
     for idx, (s1_id, name, addr, country) in enumerate(s1_raw, 1):
         c_name = MultiPassTextCleaner.clean(name)
         c_addr = MultiPassTextCleaner.clean(addr)
-
+        
         # Retrieve candidate IDs from inverted index
         cands = blocker.retrieve_candidates(s1_id, c_name, c_addr, country, max_candidates=25)
         all_candidates[s1_id] = cands
@@ -107,17 +107,17 @@ def run_pipeline(data_dir: str, output_dir: str, split: str = "test", max_entiti
             # Compute multi-dimensional similarity features
             sim_features = VectorizedStringSimilarity.compute_pair_features(c_name, p_name, c_addr, p_addr)
             h_compat = StructuralAddressComparator.evaluate_number_compatibility(c_addr, p_addr)
-
+            
             # Composite calibrated score
             name_score = 0.5 * sim_features["name_token_sort"] + 0.3 * sim_features["name_jw"] + 0.2 * sim_features["name_jaccard"]
             addr_score = 0.6 * sim_features["addr_token_sort"] + 0.4 * sim_features["addr_jaccard"] if c_addr and p_addr else 0.5
-
+            
             # Penalize house number conflicts
             if h_compat == 0.0:
                 score = 0.0
             else:
                 score = 0.7 * name_score + 0.3 * addr_score
-
+                
             if score >= 0.70:
                 all_scored_pairs.append((s1_id, cid, score))
 
